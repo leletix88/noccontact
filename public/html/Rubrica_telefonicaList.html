@@ -1,0 +1,65 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	Rubrica_telefonicaList
+	
+	Links : 	Rubrica_telefonicaEdit
+					/rubrica_telefonicas/{id}
+.				
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="Rubrica_telefonicaListController">
+	
+	<h1>Rubrica_telefonicaList</h1>
+	
+	<!-- SEARCH FORM -->
+	<div class="well">
+	    <form name="form_search" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="cognome">Cognome</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.cognome" class="form-control" name="cognome" id="cognome" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="nome">Nome</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.nome" class="form-control" name="nome" id="nome" >
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<!-- TABLE -->
+	<table class="table table-condensed table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>_id</th>
+				<th>cognome</th>
+				<th>nome</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list | filter: {  cognome:search.cognome,  nome:search.nome,  }">
+				<td ng-bind="item._id" ng-link="/rubrica_telefonicas/{{item._id}}"></td>
+				<td ng-bind="item.cognome"></td>
+				<td ng-bind="item.nome"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="mb-20" ng-if="list.$resolved && (list | filter :{   cognome:search.cognome,  nome:search.nome,  }).length == 0">
+        <b>No result found</b>
+    </div>
+
+	<!-- BUTTON -->
+	<button class="btn btn-primary" ng-link="/rubrica_telefonicas/new">New</button>
+	
+</div>

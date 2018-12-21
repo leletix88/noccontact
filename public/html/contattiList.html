@@ -1,0 +1,85 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	contattiList
+	
+	Links : 	contattiEdit
+					/contattis/{id}
+.				
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="contattiListController">
+	
+	<h1>contattiList</h1>
+	
+	<!-- SEARCH FORM -->
+	<div class="well">
+	    <form name="form_search" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="mail">Mail</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.mail" class="form-control" name="mail" id="mail" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="nome">Nome</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.nome" class="form-control" name="nome" id="nome" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="note">Note</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.note" class="form-control" name="note" id="note" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="numero">Numero</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.numero" class="form-control" name="numero" id="numero" >
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<!-- TABLE -->
+	<table class="table table-condensed table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>_id</th>
+				<th>mail</th>
+				<th>nome</th>
+				<th>note</th>
+				<th>numero</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list | filter: {  mail:search.mail,  nome:search.nome,  note:search.note,  numero:search.numero,  }">
+				<td ng-bind="item._id" ng-link="/contattis/{{item._id}}"></td>
+				<td ng-bind="item.mail"></td>
+				<td ng-bind="item.nome"></td>
+				<td ng-bind="item.note"></td>
+				<td ng-bind="item.numero"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="mb-20" ng-if="list.$resolved && (list | filter :{   mail:search.mail,  nome:search.nome,  note:search.note,  numero:search.numero,  }).length == 0">
+        <b>No result found</b>
+    </div>
+
+	<!-- BUTTON -->
+	<button class="btn btn-primary" ng-link="/contattis/new">New</button>
+	
+</div>

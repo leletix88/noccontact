@@ -1,0 +1,55 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	domini_spcList
+	
+	Links : 	domini_spcEdit
+					/domini_spcs/{id}
+.				
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="domini_spcListController">
+	
+	<h1>domini_spcList</h1>
+	
+	<!-- SEARCH FORM -->
+	<div class="well">
+	    <form name="form_search" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="nome_dominio">Nome_dominio</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.nome_dominio" class="form-control" name="nome_dominio" id="nome_dominio" >
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<!-- TABLE -->
+	<table class="table table-condensed table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>_id</th>
+				<th>nome_dominio</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list | filter: {  nome_dominio:search.nome_dominio,  }">
+				<td ng-bind="item._id" ng-link="/domini_spcs/{{item._id}}"></td>
+				<td ng-bind="item.nome_dominio"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="mb-20" ng-if="list.$resolved && (list | filter :{   nome_dominio:search.nome_dominio,  }).length == 0">
+        <b>No result found</b>
+    </div>
+
+	<!-- BUTTON -->
+	<button class="btn btn-primary" ng-link="/domini_spcs/new">New</button>
+	
+</div>
