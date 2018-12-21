@@ -36,6 +36,12 @@ db_Contatti_db_schema.Rubrica_telefonica = new mongoose.Schema({
 	cognome: {
 		type: 'String'
 	},
+	gruppo: {
+		type: 'String'
+	},
+	interno: {
+		type: 'String'
+	},
 	nome: {
 		type: 'String'
 	},

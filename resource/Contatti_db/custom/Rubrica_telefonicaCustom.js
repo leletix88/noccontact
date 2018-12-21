@@ -14,6 +14,12 @@ const properties = require('../../../properties.js');
 		cognome: {
 			type: 'String'
 		},
+		gruppo: {
+			type: 'String'
+		},
+		interno: {
+			type: 'String'
+		},
 		nome: {
 			type: 'String'
 		},
